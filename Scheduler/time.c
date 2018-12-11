@@ -5,6 +5,9 @@
 
 void timer_init(void);
 void timer_handler (int);
+void task_1(int);
+void task_2(int);
+void task_3(int);
 
 int main(){
   timer_init();
@@ -17,16 +20,19 @@ void timer_handler (int signum){
         printf ("\n%d (%d %d %d) : ", count+=10, count1-=10,count2-=10,count3-=10);
 
          if(count1==0){
-          count1=610;
-          printf ("Task 1");
+          count1 = 600;
+          void (*foo)(int) = &task_1;
+          (*foo)(1);
         }
          if(count2==0){
-          count2=360;
-          printf("Task 2");
+          count2 = 350;
+          void (*foo)(int) = &task_1;
+          (*foo)(2);
         }
          if(count3==0){
-          count3=260;
-          printf ("Task 3");
+          count3 = 250;
+          void (*foo)(int) = &task_1;
+          (*foo)(3);
         }
 }
 
@@ -54,4 +60,12 @@ void timer_init(void){
         /* Do busy work. */
         /*while (1);*/
 }
-
+void task_1(int a){
+  printf("Task %d", a);
+}
+void task_2(int a){
+  printf("Task %d", a);
+}
+void task_3(int a){
+  printf("Task %d", a);
+}
